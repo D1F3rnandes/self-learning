@@ -1,4 +1,5 @@
 #Analytics Dashboard part of studies from Data Academy Science "Visualização de Dados e Design de Dashboards"
+
 #www.dataacademyscience.com.br
 
 #Importing the packages
@@ -37,6 +38,11 @@ def group_by(df, col):
 
     return grouped
 
+#Formatting variables
+title_font = {'size':20, 'color':'black'}
+legend_font = {'size':20, 'color':'grey'}
+global_font = dict(family = 'Roboto')
+
 #
 #
 #
@@ -44,4 +50,4 @@ def group_by(df, col):
 #
 #
 #
-#
+# App Executable
