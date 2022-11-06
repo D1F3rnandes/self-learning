@@ -49,7 +49,7 @@ global_font = dict(family = 'Roboto')
 #
 ##### App Dash #####
 
-# Criando app dash
+# Creating the App Dash
 dashboard_analytics = dash.Dash(__name__, 
                 external_stylesheets = [dbc.themes.YETI], 
                 suppress_callback_exceptions = True, 
