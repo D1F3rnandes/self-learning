@@ -6,6 +6,7 @@ www.dataacademyscience.com.br
 '''
 
 #Importing the packages
+
 import dash
 import plotly
 import locale
