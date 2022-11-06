@@ -47,7 +47,18 @@ global_font = dict(family = 'Roboto')
 #
 #
 #
+##### App Dash #####
+
+# Criando app dash
+dashboard_analytics = dash.Dash(__name__, 
+                external_stylesheets = [dbc.themes.YETI], 
+                suppress_callback_exceptions = True, 
+                meta_tags = [{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0'}])
+
+server = dashboard_analytics.server
 #
 #
 #
 # App Executable
+if __name__=='__main__':
+    dashboard_analytics.run_server(debug = False, use_reloader = False)
