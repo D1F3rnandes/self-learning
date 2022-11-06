@@ -4,21 +4,21 @@ SELECT
   CONCAT (first_name,' ',last_name) AS Clientes,
   order_id AS Pedidos_Quantidades
 FROM
-  pdopocs.training_dataset_dsilv244.customers
-    INNER JOIN pdopocs.training_dataset_dsilv244.orders
+  customers
+    INNER JOIN orders
     ON orders.customer_id = customers.customer_id
 ORDER BY Pedidos_Quantidades DESC
 LIMI 10;
 
   /*Criando uma view com os TopClientes do resultado Query Anterior*/
 CREATE VIEW
-  pdopocs.training_dataset_dsilv244.TopClientes AS
+  TopClientes AS
 SELECT
   CONCAT (first_name,' ',last_name) AS Clientes,
   order_id AS Pedidos_Quantidades
 FROM
-  pdopocs.training_dataset_dsilv244.customers
-    INNER JOIN pdopocs.training_dataset_dsilv244.orders
+  customers
+    INNER JOIN orders
     ON orders.customer_id = customers.customer_id
 ORDER BY Pedidos_Quantidades DESC
 LIMI 10; 
@@ -29,8 +29,8 @@ SELECT
   store_name AS lojas,
   count (order_id) AS qtdPedidos,
 FROM 
-  pdopocs.training_dataset_dsilv244.stores
-    INNER JOIN pdopocs.training_dataset_dsilv244.orders
+  stores
+    INNER JOIN orders
     ON orders.store_id = stores.store_id
 GROUP BY lojas
 ORDER BY qtdPedidos DESC
@@ -39,13 +39,13 @@ LIMIT 10;
   /*Criando uma view com as TopLojas do rsultado da Query Anterior*/
 
 CREATE VIEW
-  pdopocs.training_dataset_dsilv244.TopLojas AS
+  TopLojas AS
 SELECT
   store_name AS lojas,
   count (order_id) AS qtdPedidos,
 FROM 
-  pdopocs.training_dataset_dsilv244.stores
-    INNER JOIN pdopocs.training_dataset_dsilv244.orders
+  stores
+    INNER JOIN orders
     ON orders.store_id = stores.store_id
 GROUP BY lojas
 ORDER BY qtdPedidos DESC
@@ -56,10 +56,10 @@ SELECT
   store_name AS Lojas,
   CAST (AVG(list_price) AS int64) AS media_faturamento
 FROM 
-  pdopocs.training_dataset_dsilv244.orders
-    INNER JOIN pdopocs.training_dataset_dsilv244.stores 
+  orders
+    INNER JOIN stores 
     ON stores.store_id = orders.store_id
-      INNER JOIN pdopocs.training_dataset_dsilv244.orders_items 
+      INNER JOIN orders_items 
       ON orders.order_id = orders_items.order_id
 GROUP BY Lojas
 ORDER BY media_faturamento DESC
@@ -70,10 +70,10 @@ SELECT
   CONCAT(first_name,' ',last_name) AS cliente,
   SUM(discount) AS Desconto
 FROM 
-  pdopocs.training_dataset_dsilv244.orders
-    INNER JOIN pdopocs.training_dataset_dsilv244.customers 
+  orders
+    INNER JOIN customers 
     ON customers.customer_id = orders.customer_id
-      INNER JOIN pdopocs.training_dataset_dsilv244.orders_items 
+      INNER JOIN orders_items 
       ON orders.order_id = orders_items.order_id
 GROUP BY cliente
 ORDER BY Desconto DESC
@@ -84,10 +84,10 @@ SELECT
   store_name AS Lojas,
   MAX(discount) AS Desconto
 FROM 
-  pdopocs.training_dataset_dsilv244.orders
-    INNER JOIN pdopocs.training_dataset_dsilv244.stores 
+  orders
+    INNER JOIN stores 
     ON stores.store_id = orders.store_id
-      INNER JOIN pdopocs.training_dataset_dsilv244.orders_items 
+      INNER JOIN orders_items 
       ON orders.order_id = orders_items.order_id
 GROUP BY Lojas
 ORDER BY Desconto DESC
@@ -103,13 +103,13 @@ SELECT
   CONCAT (c.first_name,' ',c.last_name) AS customer_full_name,
   c.zip_code
 FROM
-  pdopocs.training_dataset_dsilv244.customers AS c
+  customers AS c
 WHERE
   c.zip_code IN
     (SELECT
       c.zip_code
     FROM
-      pdopocs.training_dataset_dsilv244.customers AS c
+      customers AS c
     WHERE
       c.customer_id = 5);
 
@@ -124,13 +124,13 @@ SELECT
   CONCAT(s.frist_name,' ',s.last_name) AS staffs_full_name,
   s.manager_id AS manager
 FROM
-  pdopocs.training_dataset_dsilv244.staffs AS s
+  staffs AS s
 WHERE
   s.manager_id IN
     (SELECT
       s.manager_id
     FROM
-      pdopocs.training_dataset_dsilv244.staffs AS s
+      staffs AS s
     WHERE
       s.staff_id = 5
     );
@@ -144,11 +144,11 @@ SELECT
   DISTINCT oi.product_id,
   oi.list_price,
 FROM
-  pdopocs.training_dataset_dsilv244.orders_items AS oi
+  orders_items AS oi
 WHERE
   oi.list_price > (SELECT
     AVG(oi.list_price)
   FROM
-    pdopocs.training_dataset_dsilv244.orders_items AS oi)
+    orders_items AS oi)
 ORDER BY
   oi.product_id
