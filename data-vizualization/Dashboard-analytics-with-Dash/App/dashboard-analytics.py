@@ -23,8 +23,20 @@ df = pd.read_csv('data/dataset.csv')
 # Calculating the gross profit margin
 df ['Margem_Lucro'] = np.multiply(np.divide(df['Lucro'], df['Venda']), 100).round(2)
 
-#
-#
+#Function for grouping
+def group_by(df, col):
+    
+    #Aggregation
+    grouped = df.groupby(by = col, as_index = False).agg({'Venda':'sum',
+                                                          'Lucro':'sum',
+                                                          'Quantidade':'sum',
+                                                          'Desconto':'mean',})
+    
+    #Calculating the profit margin
+    grouped['Margem_Lucro'] = np.multiply(np.divide(df['Lucro'], df['Venda']), 100).round(2)
+
+    return grouped
+
 #
 #
 #
