@@ -43,29 +43,39 @@ GroupTable <- left_join(GroupnkillTable, Groupcount, by = c("gname" = "gname", "
 View(GroupTable)
 
 # Agrupamento 2 - Nacionalidade que sofreu ataques(natlty)
+
+  # Limpeza dos dados
 natltycount<- ddply(dados_clean, .(natlty1_txt, year), nrow)
 colnames(natltycount)[3] <- "attack_count"
 
+  # Somando o números de mortos por nacionalidade
 natltykillSum <- aggregate(nkill ~ natlty1_txt + year, data = dados_clean, sum)
 colnames(natltykillSum)[3] <- "kills_total"
 
+  # Verificando a média de morte por nacionalidade
 natltykillMean <- aggregate(nkill ~ natlty1_txt + year, data = dados_clean, mean)
 colnames(natltykillMean)[3] <- "kills_mean"
 
+  # Criando a tabelas com totas os dados agrupados
 natltykillTable <- left_join(natltykillSum, natltykillMean, by = c("natlty1_txt" = "natlty1_txt", "year" = "year"))
 natltyTable <- left_join(natltykillTable, natltycount, by = c("natlty1_txt" = "natlty1_txt", "year" = "year"))
 View(natltyTable)
 
 # Agrupamento 3 - Os tipos de alvo dos ataques(targettype)
+
+  # Limpeza dos dados
 natltycount <- ddply(dados_clean, .(targtype1_txt, year), nrow)
 colnames(natltycount)[3] <- "attack_count"
 
+  # Somando o números de mortos por nacionalidade
 targetypekillSum <- aggregate(nkill ~ targtype1_txt + year, data = dados_clean, sum)
 colnames(targetypekillSum)[3] <- "attack_count"
 
+  # Verificando a média de morte por nacionalidade
 targetypekillMean <- aggregate(nkill ~ targtype1_txt + year, data = dados_clean, mean)
 colnames(targetypekillMean)[3] <- "attack_mean"
 
+  # Criando a tabelas com totas os dados agrupados
 targetypekillTable <- left_join(targetypekillSum, targetypekillMean, by = c("targtype1_txt" = "targtype1_txt", "year" = "year"))
 targetypeTable <- left_join(targetypekillTable, natltycount, by = c("targtype1_txt" = "targtype1_txt", "year" = "year"))
 View(targetypeTable)
