@@ -57,11 +57,15 @@ natltyTable <- left_join(natltykillTable, natltycount, by = c("natlty1_txt" = "n
 View(natltyTable)
 
 # Agrupamento 3 - Os tipos de alvo dos ataques(targettype)
-targetypecount <- ddply(dados_clean, .(targtype1_txt, year), nrow)
-colnames(targetypecount)[3] <- "attack_count"
+natltycount <- ddply(dados_clean, .(targtype1_txt, year), nrow)
+colnames(natltycount)[3] <- "attack_count"
 
+targetypekillSum <- aggregate(nkill ~ targtype1_txt + year, data = dados_clean, sum)
+colnames(targetypekillSum)[3] <- "attack_count"
 
-  
+targetypekillMean <- aggregate(nkill ~ targtype1_txt + year, data = dados_clean, mean)
+colnames(targetypekillMean)[3] <- "attack_mean"
 
-  
-
+targetypekillTable <- left_join(targetypekillSum, targetypekillMean, by = c("targtype1_txt" = "targtype1_txt", "year" = "year"))
+targetypeTable <- left_join(targetypekillTable, natltycount, by = c("targtype1_txt" = "targtype1_txt", "year" = "year"))
+View(targetypeTable)
