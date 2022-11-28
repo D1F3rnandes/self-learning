@@ -61,7 +61,7 @@ natltykillTable <- left_join(natltykillSum, natltykillMean, by = c("natlty1_txt"
 natltyTable <- left_join(natltykillTable, natltycount, by = c("natlty1_txt" = "natlty1_txt", "year" = "year"))
 View(natltyTable)
 
-# Agrupamento 3 - Os tipos de alvo dos ataques(targettype)
+# Agrupamento 3 - Os tipos de alvo dos ataques(targetype)
 
   # Limpeza dos dados
 natltycount <- ddply(dados_clean, .(targtype1_txt, year), nrow)
