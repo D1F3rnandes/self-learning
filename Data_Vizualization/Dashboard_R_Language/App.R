@@ -79,3 +79,67 @@ colnames(targetypekillMean)[3] <- "attack_mean"
 targetypekillTable <- left_join(targetypekillSum, targetypekillMean, by = c("targtype1_txt" = "targtype1_txt", "year" = "year"))
 targetypeTable <- left_join(targetypekillTable, natltycount, by = c("targtype1_txt" = "targtype1_txt", "year" = "year"))
 View(targetypeTable)
+
+# Agrupamento 4 - Os tipos de alvo dos ataques(regioncount)
+
+  # Limpeza dos dados
+regioncount <- ddply(dados_clean, .(region_txt, year), nrow)
+colnames(regioncount)[3] <- "attack_count"
+
+  # Somando o números de mortos por nacionalidade
+regioncountkillSum <- aggregate(nkill ~ region_txt + year, data = dados_clean, sum)
+colnames(regioncountSum)[3] <- "attack_count"
+
+  # Verificando a média de morte por nacionalidade
+regioncountkillMean <- aggregate(nkill ~ region_txt + year, data = dados_clean, mean)
+colnames(targetypekillMean)[3] <- "attack_mean"
+
+  # Criando a tabelas com totas os dados agrupados
+regioncountkillTable <- left_join(regioncountkillSum, regioncountkillMean, by = c("region_txt" = "region_txt", "year" = "year"))
+regionCountTable <- left_join(regioncountkillTable, regioncount, by = c("region_txt" = "region_txt", "year" = "year"))
+View(regioncountTable)
+
+# Agrupamento 5 - Agrupamento do tipo de arma
+
+Weaponcount <- ddply(dados_clean, .(weaptype1_txt, year), nrow)
+colnames(Weaponcount)[3]  <- "attack_count"
+
+WeaponnkillSum <- aggregate(nkill ~ weaptype1_txt + year, data = dados_clean, sum)
+colnames(WeaponnkillSum)[3]  <- "kills_total"
+
+WeaponnkillMean <- aggregate(nkill ~ weaptype1_txt + year, data = dados_clean, mean)
+colnames(WeaponnkillMean)[3]  <- "kills_mean"
+
+WeaponnkillTable <- left_join(WeaponnkillSum, WeaponnkillMean, by = c("weaptype1_txt" = "weaptype1_txt", "year" = "year"))
+WeaponTable <- left_join(WeaponnkillTable, Weaponcount, by = c("weaptype1_txt" = "weaptype1_txt", "year" = "year"))
+View(WeaponTable)
+
+# Agrupamento 6 - Agrupamento do tipo de ataque
+
+attacktypecount <- ddply(dados_clean, .(attacktype1_txt, year), nrow)
+colnames(attacktypecount)[3]  <- "attack_count"
+
+attacktypenkillSum <- aggregate(nkill ~ attacktype1_txt + year, data = dados_clean, sum)
+colnames(attacktypenkillSum)[3]  <- "kills_total"
+
+attacktypenkillMean <- aggregate(nkill ~ attacktype1_txt + year, data = dados_clean, mean)
+colnames(attacktypenkillMean)[3]  <- "kills_mean"
+
+attacktypenkillTable <- left_join(attacktypenkillSum, attacktypenkillMean, by = c("attacktype1_txt" = "attacktype1_txt", "year" = "year"))
+attacktypeTable <- left_join(attacktypenkillTable, attacktypecount, by = c("attacktype1_txt" = "attacktype1_txt", "year" = "year"))
+View(attacktypeTable)
+
+# Agrupamento 7 - Agrupamento do pais que sofreu os ataques (país que sofreu o ataque)
+
+countrycount <- ddply(dados_clean, .(country_txt, year), nrow)
+colnames(countrycount)[3]  <- "attack_count"
+
+countrynkillSum <- aggregate(nkill ~ country_txt + year, data = dados_clean, sum)
+colnames(countrynkillSum)[3]  <- "kills_total"
+
+countrynkillMean <- aggregate(nkill ~ country_txt + year, data = dados_clean, mean)
+colnames(countrynkillMean)[3]  <- "kills_mean"
+
+countrynkillTable <- left_join(countrynkillSum, countrynkillMean, by = c("country_txt" = "country_txt", "year" = "year"))
+countryTable <- left_join(countrynkillTable, countrycount, by = c("country_txt" = "country_txt", "year" = "year"))
+View(countryTable)
