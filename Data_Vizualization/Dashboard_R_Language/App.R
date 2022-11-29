@@ -143,3 +143,31 @@ colnames(countrynkillMean)[3]  <- "kills_mean"
 countrynkillTable <- left_join(countrynkillSum, countrynkillMean, by = c("country_txt" = "country_txt", "year" = "year"))
 countryTable <- left_join(countrynkillTable, countrycount, by = c("country_txt" = "country_txt", "year" = "year"))
 View(countryTable)
+
+# Alterando o titulo das colunas
+
+colnames(GroupTable)[1] <- "Title"
+colnames(natltyTable)[1] <- "Title"
+colnames(targetypeTable)[1] <- "Title"
+colnames(regioncountTable)[1] <- "Title"
+colnames(WeaponTable)[1] <- "Title"
+colnames(attacktypeTable)[1] <- "Title"
+colnames(countryTable)[1] <- "Title"
+
+# Evitando que ocorra que o titulo fique vazio, subtituindo por Unknown
+
+natltyTable$Title <- ifelse(natltyTable$Title == "", "Unknown", as.character(natltyTable$Title))
+
+# Ajustando o titulo pois é muito extenso
+
+WeaponTable$Title <- ifelse(WeaponTable$Title == "Vehicle (not to include vehicle-borne explosives, i.e., car or truck bombs)", 
+                            "Vehicle (not to include vehicle-borne explosives)", 
+                            as.character(WeaponTable$Title))
+
+# Títulos das colunas
+colnames(natltyTable)[1] <- "Title"
+colnames(targtypeTable)[1] <- "Title"
+colnames(RegionTable)[1] <- "Title"
+colnames(WeaponTable)[1] <- "Title"
+colnames(attacktypeTable)[1] <- "Title"
+colnames(countryTable)[1] <- "Title"
