@@ -88,7 +88,7 @@ colnames(regioncount)[3] <- "attack_count"
 
   # Somando o números de mortos por nacionalidade
 regioncountkillSum <- aggregate(nkill ~ region_txt + year, data = dados_clean, sum)
-colnames(regioncountSum)[3] <- "attack_count"
+colnames(regioncountkillSum)[3] <- "attack_count"
 
   # Verificando a média de morte por nacionalidade
 regioncountkillMean <- aggregate(nkill ~ region_txt + year, data = dados_clean, mean)
@@ -97,7 +97,7 @@ colnames(targetypekillMean)[3] <- "attack_mean"
   # Criando a tabelas com totas os dados agrupados
 regioncountkillTable <- left_join(regioncountkillSum, regioncountkillMean, by = c("region_txt" = "region_txt", "year" = "year"))
 regionCountTable <- left_join(regioncountkillTable, regioncount, by = c("region_txt" = "region_txt", "year" = "year"))
-View(regioncountTable)
+View(regionCountTable)
 
 # Agrupamento 5 - Agrupamento do tipo de arma
 
