@@ -10,50 +10,61 @@ library(scales)
 
 #Página do Dashboard
 ui <- dashboardPage(
-                    # Cabeçalho
-                    dashboardHeader(title = "Dashboard Interativo Para Análise de Incidentes e Atos de Violência"),
-                    
-                    # Barra lateral
-                    dashboardSidebar(selectInput("dataset", "Selecione a Opção:",
-                                                 choices = c("Mortos Por Grupo Terrorista", 
-                                                             "Região do Ataque",
-                                                             "País do Ataque",
-                                                             "Tipo de Ataque", 
-                                                             "Tipo de Alvo do Ataque", 
-                                                             "Tipo de Arma", 
-                                                             "Nacionalidade Alvo")),
-                                     sliderInput("kills",
-                                                 "Número Mínimo de Mortos:",
-                                                 min = 0,
-                                                 max = 20000, 
-                                                 value = 40),
-                                     sliderInput("year",
-                                                 "Ano:",
-                                                 min = 1970,
-                                                 max = 2017, 
-                                                 value = 1970,
-                                                 animate = TRUE,
-                                                 sep = ""),
-                                     actionButton("update", "Atualizar o Dashboard")),
-                    
-                    # Corpo da página
-                    dashboardBody(fluidRow(column(width = 6,
-                                                  box(plotOutput("bubblePlot", height = 350), width = NULL),
-                                                  box(plotOutput("barChart", height = 350), width = NULL)),
-                                           column(width = 6, 
-                                                  box(tableOutput("view"), width = NULL)))))
+
+# Cabeçalho
+dashboardHeader(
+  title = "Análise de Incidentes e Atos de Violência"),
+
+# Barra lateral
+dashboardSidebar(
+  selectInput("dataset", "Selecione a Opção:",
+    choices = c("Mortos Por Grupo Terrorista",
+                "Região do Ataque",
+                "País do Ataque",
+                "Tipo de Ataque", 
+                "Tipo de Alvo do Ataque",
+                "Tipo de Arma", 
+                "Nacionalidade Alvo")),
+    sliderInput("kills",
+                "Número Mínimo de Mortos:",
+                min = 0,
+                max = 20000, 
+                value = 40),
+    sliderInput("year",
+                "Ano:",
+                min = 1970,
+                max = 2017, 
+                value = 1970,
+                animate = TRUE,
+                sep = ""),
+    actionButton("update", "Atualizar o Dashboard")),
+
+# Corpo da página
+  dashboardBody(
+    fluidRow(
+      column(width = 6, 
+        box(plotOutput("barChart", height = 350), width = NULL)
+      ),
+        box(plotOutput("bubblePlot", height = 350), width = NULL),
+      column(
+        width = 6, 
+          box(tableOutput("view"), width = NULL)
+      )
+    )
+  )
+)
 
 server <- function(input, output) {
 
   # Input dos dados
   datasetInput <- eventReactive(input$update, {switch(input$dataset,
-                                                      "Mortos Por Grupo Terrorista" = GroupTable,
-                                                      "Região do Ataque" = RegionTable,
-                                                      "País do Ataque" = countryTable,
-                                                      "Tipo de Ataque" = attacktypeTable,
-                                                      "Tipo de Alvo do Ataque" = targtypeTable,
-                                                      "Tipo de Arma" = WeaponTable,
-                                                      "Nacionalidade Alvo" = natltyTable)},
+                                                      "Mortos Por Grupo Terrorista" = GroupTable, # nolint
+                                                      "Região do Ataque" = RegionTable,# nolint
+                                                      "País do Ataque" = countryTable,# nolint
+                                                      "Tipo de Ataque" = attacktypeTable,# nolint
+                                                      "Tipo de Alvo do Ataque" = targtypeTable,# nolint
+                                                      "Tipo de Arma" = WeaponTable,# nolint
+                                                      "Nacionalidade Alvo" = natltyTable)},# nolint
                                 ignoreNULL = FALSE)
   
   # Títulos
