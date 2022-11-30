@@ -1,5 +1,4 @@
 getwd()
-setwd("C:/Users/Diego/Documents/git-projects/Data_Vizualization/Dashboard_R_Language/")
 
 install.packages("plyr")
 install.packages("dplyr")
