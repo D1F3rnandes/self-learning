@@ -166,8 +166,8 @@ WeaponTable$Title <- ifelse(WeaponTable$Title == "Vehicle (not to include vehicl
 
 # Títulos das colunas
 colnames(natltyTable)[1] <- "Title"
-colnames(targtypeTable)[1] <- "Title"
-colnames(RegionTable)[1] <- "Title"
+colnames(targetypeTable)[1] <- "Title"
+colnames(regionCountTable)[1] <- "Title"
 colnames(WeaponTable)[1] <- "Title"
 colnames(attacktypeTable)[1] <- "Title"
 colnames(countryTable)[1] <- "Title"
