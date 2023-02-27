@@ -1,10 +1,5 @@
-package ex4;
 import java.util.*;
 public class Ex4 {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         double salario1,novosalario;

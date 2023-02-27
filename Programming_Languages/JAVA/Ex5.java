@@ -1,10 +1,5 @@
-package ex5;
 import java.util.*;
 public class Ex5 {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         double salario1,novosalario, percentual_decimal, aumentosalario;

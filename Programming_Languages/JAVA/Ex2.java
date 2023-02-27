@@ -1,10 +1,5 @@
-package ex2;
 import java.util.*;
 public class Ex2 {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         System.out.println("Hello World!");
         double n1,n2,n3,p1,p2,p3,mp;
