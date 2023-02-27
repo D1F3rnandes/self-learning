@@ -5,10 +5,10 @@ public class Ex5 {
 
         double salario1,novosalario, percentual_decimal, aumentosalario;
         double percentual;
-        Scanner entrada  = new Scanner(System.in);
-        
-        System.out.println("\nInsira o salario\n");
-        salario1 = entrada.nextDouble();
+        try (Scanner entrada = new Scanner(System.in)) {
+            System.out.println("\nInsira o salario\n");
+            salario1 = entrada.nextDouble();
+        }
         
         percentual_decimal = 0.25;
         percentual = percentual_decimal*100;
