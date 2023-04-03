@@ -1,13 +1,13 @@
 import java.util.Scanner;
 public class Exercicio_6 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner escreva = new Scanner(System.in);
 
         System.out.print("Digite o sexo da pessoa (M ou F): ");
-        String sexo = scanner.next();
+        String sexo = escreva.next();
 
         System.out.print("Digite a altura da pessoa (em cm): ");
-        double altura = scanner.nextDouble();
+        double altura = escreva.nextDouble();
 
         double pesoIdeal;
 

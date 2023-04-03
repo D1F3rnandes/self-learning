@@ -1,16 +1,16 @@
 import java.util.Scanner;
 public class Exercicio_7 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner escreva = new Scanner(System.in);
 
         System.out.print("Digite a primeira nota (de 0 a 100): ");
-        double nota1 = scanner.nextDouble();
+        double nota1 = escreva.nextDouble();
 
         System.out.print("Digite a segunda nota (de 0 a 100): ");
-        double nota2 = scanner.nextDouble();
+        double nota2 = escreva.nextDouble();
 
         System.out.print("Digite a terceira nota (de 0 a 100): ");
-        double nota3 = scanner.nextDouble();
+        double nota3 = escreva.nextDouble();
 
         double media = ((nota1 * 2) + (nota2 * 2) + (nota3 * 4)) / 8;
 

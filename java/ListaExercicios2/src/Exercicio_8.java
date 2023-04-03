@@ -1,13 +1,13 @@
 import java.util.Scanner;
 public class Exercicio_8 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner escreva = new Scanner(System.in);
 
         System.out.print("Digite o salário base: ");
-        double salarioBase = scanner.nextDouble();
+        double salarioBase = escreva.nextDouble();
 
         System.out.print("Digite a gratificação: ");
-        double gratificacao = scanner.nextDouble();
+        double gratificacao = escreva.nextDouble();
 
         double salarioBruto = salarioBase + gratificacao;
         double imposto;

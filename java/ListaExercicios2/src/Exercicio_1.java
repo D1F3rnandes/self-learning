@@ -1,13 +1,13 @@
 import java.util.Scanner;
 public class Exercicio_1 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner escreva = new Scanner(System.in);
 
         System.out.print("Digite o primeiro número: ");
-        int num1 = scanner.nextInt();
+        int num1 = escreva.nextInt();
 
         System.out.print("Digite o segundo número: ");
-        int num2 = scanner.nextInt();
+        int num2 = escreva.nextInt();
 
         if (num1 > num2) {
             System.out.println(num1 + " é maior que " + num2);
